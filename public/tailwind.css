@@ -5,11 +5,13 @@
   --card: 280px;
   --card-gap: 2rem;
   --x-gap: 1.25rem;
-  --main-max-width: 1200px;
+  --main-max-width: 900px;
 }
 
 body {
   font-family: "Raleway", sans-serif;
+  height: 100vh;
+  @apply bg-gray-100;
 }
 
 /** search header */
@@ -40,9 +42,27 @@ body {
   );
 }
 
+/** custom */
+
+.break-word {
+  word-break: break-word;
+}
+
 /** grid */
 .grid {
   display: grid;
+}
+
+@screen md {
+  .grid-template-card {
+    grid-template-columns: 3fr 6fr;
+  }
+}
+
+@screen lg {
+  .grid-template-card {
+    grid-template-columns: 3fr 7fr;
+  }
 }
 
 .grid-template-main {
