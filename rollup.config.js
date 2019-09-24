@@ -18,7 +18,7 @@ export default {
     file: "public/bundle.js"
   },
   plugins: [
-    dotenv(),
+    !production && dotenv(),
     svelte({
       // enable run-time checks when not in production
       dev: !production,
