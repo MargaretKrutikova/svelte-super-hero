@@ -16,7 +16,13 @@ body {
 
 /** search header */
 .search-bg {
-  background-image: url("https://i.ibb.co/r5MHV17/mobile-bg.jpg");
+  background-image: url("mobile-bg_50.jpg");
+}
+
+@screen md {
+  .search-bg {
+    background-image: url("https://i.ibb.co/r5MHV17/mobile-bg.jpg");
+  }
 }
 
 @screen lg {
