@@ -8,6 +8,10 @@
   --main-max-width: 900px;
 }
 
+input {
+  -webkit-appearance: none;
+}
+
 body {
   font-family: "Raleway", sans-serif;
   height: 100vh;
