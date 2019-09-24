@@ -1,7 +1,5 @@
 <script>
   import SearchField from "./SearchField.svelte";
-
-  export let onSearch;
 </script>
 
 <header class="flex items-center justify-center relative" style="height: 30rem">
@@ -15,6 +13,6 @@
       sm:text-5xl md:text-6xl font-heading uppercase">
       Who is your favorite?
     </h1>
-    <SearchField on:search={onSearch} />
+    <SearchField on:search />
   </div>
 </header>

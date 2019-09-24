@@ -2,7 +2,7 @@
   export let name;
   export let score;
 
-  let isValidScore = !isNaN(parseInt(score));
+  $: isValidScore = !isNaN(parseInt(score));
 </script>
 
 <div class="flex flex-col" style="width:{score}%">
