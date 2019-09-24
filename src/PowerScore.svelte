@@ -2,7 +2,7 @@
   export let name;
   export let score;
 
-  $: isValidScore = !isNaN(parseInt(score));
+  let isValidScore = !isNaN(parseInt(score));
   function getColor() {
     if (!isValidScore) return "";
 
@@ -15,12 +15,13 @@
     if (intScore >= 20) return "400";
     return "300";
   }
+  let color = getColor();
 </script>
 
 <div class="flex flex-col mb-1" style="width:{score}%">
   <div class="font-bold flex justify-between">
     {#if isValidScore}
-      <span>{name}</span>
+      <span class="block mr-4">{name}</span>
       <span>{score}%</span>
     {:else}
       <span class="text-gray-600">{name}</span>
@@ -29,5 +30,5 @@
   </div>
   <span
     style="opacity: 0.9"
-    class={'block h-2 rounded ' + (isValidScore ? 'bg-deep-blue-' + getColor() : 'bg-gray-300')} />
+    class={'block h-2 rounded ' + (isValidScore ? 'bg-deep-blue-' + color : 'bg-gray-300')} />
 </div>
