@@ -4,7 +4,7 @@
 
   import { searchSuperHeroes } from "./ApiService.ts";
 
-  let searchResultPromise = Promise.resolve([]);
+  let searchResultPromise = [];
 
   const handleSearch = event => {
     searchResultPromise = searchSuperHeroes(event.detail.term);
