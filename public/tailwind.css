@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --card: 280px;
+  --card-gap: 2rem;
+  --x-gap: 1.25rem;
+  --main-max-width: 1200px;
+}
+
+body {
+  font-family: "Raleway", sans-serif;
+}
+
+.grid {
+  display: grid;
+}
+
+.grid-template-main {
+  grid-template-columns:
+    var(--x-gap) 1fr
+    minmax(var(--card), var(--main-max-width))
+    1fr var(--x-gap);
+}
+
+.grid-template-search {
+  grid-template-columns: repeat(auto-fill, minmax(var(--card), 1fr));
+}
+
+.grid-column-main {
+  grid-column: 3 / 4;
+}
+
+.grid-gap {
+  grid-gap: var(--card-gap);
+}
