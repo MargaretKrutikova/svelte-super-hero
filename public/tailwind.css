@@ -21,7 +21,7 @@ body {
 
 /** search header */
 .search-bg {
-  background-image: url("mobile-bg.jpg");
+  background-image: url("mobile-bg_50.jpg");
 }
 
 @screen md {
