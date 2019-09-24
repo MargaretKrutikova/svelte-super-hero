@@ -6,7 +6,7 @@ module.exports = {
       }
     },
     fontFamily: {
-      heading: ["Marvel"],
+      heading: ["Oswald"],
       body: ["Raleway"]
     }
   },
