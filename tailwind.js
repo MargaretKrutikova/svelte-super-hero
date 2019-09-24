@@ -1,6 +1,10 @@
 module.exports = {
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "deep-purple": "#7621A3"
+      }
+    },
     fontFamily: {
       heading: ["Marvel"],
       body: ["Raleway"]
