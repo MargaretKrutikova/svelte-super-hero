@@ -10,6 +10,7 @@
 
 input {
   -webkit-appearance: none;
+  border-radius: 0;
 }
 
 body {
@@ -20,7 +21,7 @@ body {
 
 /** search header */
 .search-bg {
-  background-image: url("mobile-bg_50.jpg");
+  background-image: url("mobile-bg.jpg");
 }
 
 @screen md {
