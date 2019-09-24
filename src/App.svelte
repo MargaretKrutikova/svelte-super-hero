@@ -1,5 +1,5 @@
 <script lang="ts">
-  import SearchField from "./SearchField.svelte";
+  import SearchHeader from "./SearchHeader.svelte";
   import SuperHeroCard from "./SuperHeroCard.svelte";
 
   import { searchSuperHeroes } from "./ApiService.ts";
@@ -12,17 +12,11 @@
 </script>
 
 <div class="bg-gray-100 flex flex-col antialiased text-gray-900">
-  <header class="h-16 bg-deep-purple flex items-center justify-center">
-    <h1 class="font-bold text-3xl font-body text-white text-lg">
-      Super heroes
-    </h1>
-  </header>
+  <SearchHeader onSearch={handleSearch} />
   <main class="grid grid-template-main">
     <div
-      class="my-10 md:flex justify-between items-center grid-column-main
-      sm:w-full lg:w-1/2 mx-auto">
-      <SearchField on:search={handleSearch} />
-    </div>
+      class="my-8 md:flex justify-between items-center grid-column-main
+      sm:w-full lg:w-1/2 mx-auto flex flex-col" />
     {#await searchResultPromise}
       ...loading
     {:then results}
