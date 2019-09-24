@@ -8,14 +8,14 @@
   <div
     style="background-image: url('{superHero.image.url}')"
     class="bg-cover" />
-  <div class="md:w-64 lg:w-1/5">
+  <div class="md:w-64 lg:w-1/5 flex items-center">
     <img src={superHero.image.url} alt={superHero.name} />
   </div>
-  <div class="px-6 py-2 sm:w-full md:w-2/3 lg:w-1/2">
+  <div class="px-6 pb-2 sm:w-full md:w-2/3 lg:w-1/2">
     <h4 class="font-bold font-heading text-4xl">{superHero.name}</h4>
-    <span>{superHero.biography['full-name']}</span>
+    <span class="mb-2 block">{superHero.biography['full-name']}</span>
 
-    <div class="flex flex-col">
+    <div class="flex flex-col mb-3">
       <PowerScore
         name="Intelligence"
         score={superHero.powerstats.intelligence} />
