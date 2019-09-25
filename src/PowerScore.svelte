@@ -1,18 +1,19 @@
 <script>
+  /** props */
   export let name;
   export let score;
 
-  let isValidScore = !isNaN(parseInt(score));
+  /** declarations */
+  let isValidScore = score !== null;
   function getColor() {
     if (!isValidScore) return "";
 
-    const intScore = parseInt(score);
-    if (intScore >= 90) return "900";
-    if (intScore >= 80) return "800";
-    if (intScore >= 70) return "700";
-    if (intScore >= 60) return "600";
-    if (intScore >= 40) return "500";
-    if (intScore >= 20) return "400";
+    if (score >= 90) return "900";
+    if (score >= 80) return "800";
+    if (score >= 70) return "700";
+    if (score >= 60) return "600";
+    if (score >= 40) return "500";
+    if (score >= 20) return "400";
     return "300";
   }
   let color = getColor();
