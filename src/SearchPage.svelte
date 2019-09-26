@@ -1,36 +1,37 @@
 <script>
+  /** props */
+  export let request;
+  export let nav;
+
+  /** declarations */
   import { searchSuperHeroes } from "./ApiService.ts";
+  import { battleStore } from "./BattleStore.ts";
+  import { handleInternalLinkClick, createBattleRoute } from "./Routing.ts";
   import SearchHeader from "./SearchHeader.svelte";
   import SuperHeroCard from "./SuperHeroCard.svelte";
-  import SuperHeroBattle from "./SuperHeroBattle.svelte";
 
   let searchResultPromise = [];
   const handleSearch = event => {
     searchResultPromise = searchSuperHeroes(event.detail.term);
   };
 
-  let battleHeroesMap = {};
-  $: battleParticipants = Object.values(battleHeroesMap);
+  $: battleRoute = createBattleRoute($battleStore.participants.map(p => p.id));
+  const isInBattle = (hero, battleState) =>
+    battleStore.participatesInBattle(hero, battleState);
 
-  function participatesInBattle(id) {
-    return !!battleHeroesMap[id];
-  }
-
-  function handleToggleBattle(event) {
+  const handleToggleBattle = event => {
     const hero = event.detail.hero;
-
-    if (participatesInBattle(hero.id)) {
-      const { [hero.id]: _, ...rest } = battleHeroesMap;
-      battleHeroesMap = rest; // reactivity ...
-    } else {
-      battleHeroesMap = { ...battleHeroesMap, [hero.id]: hero }; // same ...
-    }
-  }
+    battleStore.toggleParticipant(hero);
+  };
 </script>
 
 <div class="flex flex-col antialiased text-gray-900">
   <SearchHeader on:search={handleSearch} />
-  <SuperHeroBattle participants={battleParticipants} />
+  <a
+    href={battleRoute}
+    on:click={event => handleInternalLinkClick(nav, battleRoute, event)}>
+    Go to battle
+  </a>
   <main class="grid grid-template-main">
     <div class="flex flex-col w-full grid-column-main py-5 md:py-10">
       {#await searchResultPromise}
@@ -43,7 +44,7 @@
         {#each heroes as hero}
           <SuperHeroCard
             {hero}
-            participatesInBattle={!!battleHeroesMap[hero.id]}
+            participatesInBattle={isInBattle(hero, $battleStore)}
             on:toggleBattle={handleToggleBattle} />
         {/each}
       {:catch error}
