@@ -9,11 +9,11 @@ const initialState: BattleState = {
   participants: []
 }
 
-const participatesInBattle = (hero: SuperHero, state: BattleState) =>
-  state.participants.find(h => h.id === hero.id)
+const hasParticipant = (id: string, state: BattleState) =>
+  state.participants.find(h => h.id === id)
 
 const toggleParticipant = (hero: SuperHero, state: BattleState): BattleState =>
-  participatesInBattle(hero, state)
+  hasParticipant(hero.id, state)
     ? { participants: state.participants.filter(h => h.id !== hero.id) }
     : { participants: [...state.participants, hero] }
 
@@ -22,9 +22,14 @@ const createStore = () => {
 
   return {
     subscribe,
-    participatesInBattle,
+    // helpers
+    hasParticipant,
+    hasParticipants: (ids: string[], state: BattleState) =>
+      ids.every(id => hasParticipant(id, state)),
+    // update actions
     toggleParticipant: (hero: SuperHero) =>
       update(prevState => toggleParticipant(hero, prevState)),
+    setParticipants: (participants: SuperHero[]) => set({ participants }),
     resetBattle: () => set({ participants: [] })
   }
 }

@@ -17,7 +17,7 @@
 
   $: battleRoute = createBattleRoute($battleStore.participants.map(p => p.id));
   const isInBattle = (hero, battleState) =>
-    battleStore.participatesInBattle(hero, battleState);
+    battleStore.hasParticipant(hero.id, battleState);
 
   const handleToggleBattle = event => {
     const hero = event.detail.hero;
@@ -35,11 +35,7 @@
   <main class="grid grid-template-main">
     <div class="flex flex-col w-full grid-column-main py-5 md:py-10">
       {#await searchResultPromise}
-        <div
-          class="text-center font-heading text-3xl text-deep-blue-900
-          font-semibold">
-          ...Loading
-        </div>
+        <div class="hero-heading">...Loading</div>
       {:then heroes}
         {#each heroes as hero}
           <SuperHeroCard
