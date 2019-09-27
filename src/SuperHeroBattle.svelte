@@ -16,15 +16,20 @@
   }
 </script>
 
+<style>
+  .btn {
+    transition: all 0.15s ease-in-out;
+  }
+</style>
+
 <div>
-  <h3>Participants:</h3>
-  <ul>
-    {#each participants as superHero}
-      <li>{superHero.name}</li>
-    {/each}
-  </ul>
   {#if rankedHeroes === null}
-    <button on:click={calculateScore}>Let the fight begin!</button>
+    <button
+      on:click={calculateScore}
+      class="btn bg-deep-blue-500 hover:bg-deep-blue-700 text-white font-bold
+      py-2 px-4 rounded">
+      Let the fight begin!
+    </button>
   {:else}
     {#each rankedHeroes as rank (rank.hero.id)}
       <div>{rank.hero.name} with score {rank.score}</div>
