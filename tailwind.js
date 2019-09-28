@@ -4,6 +4,7 @@ module.exports = {
       colors: {
         "deep-blue": {
           base: "#18016f",
+          "100": "#e5deff",
           "200": "#c4b4fe",
           "300": "#8e71fe",
           "400": "#744ffd",

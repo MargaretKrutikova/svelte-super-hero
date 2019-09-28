@@ -1,4 +1,5 @@
-export interface PowerStats {
+/** api types */
+export interface ApiPowerStats {
   intelligence: string
   strength: string
   speed: string
@@ -7,6 +8,24 @@ export interface PowerStats {
   combat: string
 }
 
+export interface ApiSuperHero {
+  id: string
+  name: string
+  powerstats: ApiPowerStats
+  biography: Biography
+  appearance: Appearance
+  work: Work
+  connections: Connections
+  image: Image
+}
+
+export interface ApiSearchResultResponse {
+  response: string
+  "results-for": string
+  results: ApiSuperHero[]
+}
+
+/** domain types */
 export interface Biography {
   "full-name": string
   "alter-egos": string
@@ -31,6 +50,15 @@ export interface Work {
   base: string
 }
 
+export interface PowerStats {
+  intelligence: number | null
+  strength: number | null
+  speed: number | null
+  durability: number | null
+  power: number | null
+  combat: number | null
+}
+
 export interface Connections {
   "group-affiliation": string
   relatives: string
@@ -40,19 +68,13 @@ export interface Image {
   url: string
 }
 
-export interface SearchResult {
+export interface SuperHero {
   id: string
   name: string
-  powerstats: PowerStats
+  stats: PowerStats
   biography: Biography
   appearance: Appearance
   work: Work
   connections: Connections
   image: Image
-}
-
-export interface SearchResult {
-  response: string
-  "results-for": string
-  results: SearchResult[]
 }
