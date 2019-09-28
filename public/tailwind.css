@@ -1,6 +1,10 @@
 @tailwind base;
 @tailwind components;
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   --card: 280px;
   --card-gap: 2rem;

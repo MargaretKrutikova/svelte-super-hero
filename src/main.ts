@@ -9,13 +9,15 @@ const app = crayon.create()
 
 app.use(svelte.router(outlet))
 
-app.path(Route.Search, (request, res) =>
+app.path(Route.Search, (request, res) => {
+  window.scrollTo(0, 0)
   res.mount(SearchPage, { request, nav: app })
-)
+})
 
-app.path(Route.Battle, (request, res) =>
+app.path(Route.Battle, (request, res) => {
+  window.scrollTo(0, 0)
   res.mount(BattlePage, { request, nav: app })
-)
+})
 
 app.load()
 

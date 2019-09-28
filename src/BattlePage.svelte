@@ -51,7 +51,7 @@
     if (hasInitializedObserver) return;
     const callback = function(entries) {
       const entry = entries[0];
-      if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+      if (entry.isIntersecting && entry.intersectionRatio >= 0.7) {
         isVisibleComparisonChart = true;
       }
     };
