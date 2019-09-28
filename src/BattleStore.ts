@@ -29,6 +29,10 @@ const createStore = () => {
     // update actions
     toggleParticipant: (hero: SuperHero) =>
       update(prevState => toggleParticipant(hero, prevState)),
+    removeParticipant: (id: string) =>
+      update(prevState => ({
+        participants: prevState.participants.filter(h => h.id !== id)
+      })),
     setParticipants: (participants: SuperHero[]) => set({ participants }),
     resetBattle: () => set({ participants: [] })
   }
