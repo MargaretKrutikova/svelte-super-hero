@@ -72,27 +72,25 @@
 <div class="flex flex-col antialiased text-gray-900 ">
   <header
     class="flex items-center h-12 md:h-16 justify-center bg-deep-blue-100
-    border-deep-blue-400 border-b">
+    border-deep-blue-400 border-b px-4">
     <div class="container flex relative items-center">
-
-      <div
-        class="uppercase absolute font-bold font-heading text-2xl
-        text-deep-blue-900"
-        style="left: 50%; transform: translate(-50%, 0);">
-        Superhero battle
-      </div>
       <a
-        class="text-deep-blue-500 hover:text-deep-blue-800 text-xl font-heading
-        font-semibold"
+        class="block text-deep-blue-500 hover:text-deep-blue-800 text-xl
+        font-heading font-semibold"
         href={Route.Search}
         on:click={event => handleInternalLinkClick(nav, Route.Search, event)}>
         Search
       </a>
+      <div
+        class="uppercase font-bold font-heading text-2xl text-deep-blue-900
+        ml-auto">
+        Superhero battle
+      </div>
 
     </div>
 
   </header>
-  <main class="container mx-auto px-5 py-5">
+  <main class="container mx-auto px-4 py-5">
     {#if isLoading}
       <div class="hero-heading">...Loading</div>
     {:else}

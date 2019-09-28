@@ -25,7 +25,8 @@
     "sirv-cli": "^0.4.4"
   },
   "scripts": {
-    "build": "npm run build:tailwind && rollup -c",
+    "add_redirects": "echo '/* /index.html 200' >./public/_redirects",
+    "build": "npm run build:tailwind && rollup -c && npm run add_redirects",
     "autobuild": "rollup -c -w",
     "dev": "run-p start:dev autobuild watch:tailwind",
     "start": "sirv public --single",
