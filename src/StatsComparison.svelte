@@ -31,7 +31,7 @@
 
 <style>
   .chart {
-    height: 350px;
+    height: 320px;
   }
   .bar {
     transition: width 0.5s ease-in-out;
@@ -84,13 +84,15 @@
         </div>
       {/each}
     </div>
-    <div class="chart flex w-full justify-between my-6 max-w-xl md:max-w-2xl">
+    <div class="flex w-full justify-between my-6 max-w-xl md:max-w-2xl">
       {#if isVisible}
         {#each chart.groups as group, index (index)}
           <div
             class="flex flex-col items-center"
             style="width: calc(100%/{chart.groups.length})">
-            <div class="flex items-end flex-auto" in:grow={{ duration: 800 }}>
+            <div
+              class="chart flex items-end flex-auto"
+              in:grow={{ duration: 800 }}>
               {#each group.bars as bar}
                 <div
                   class={'bar border rounded rounded-b-none bar-' + group.bars.length}

@@ -6,6 +6,7 @@ import { terser } from "rollup-plugin-terser"
 import typescript from "rollup-plugin-typescript2"
 import typescriptCompiler from "typescript"
 import dotenv from "rollup-plugin-dotenv"
+import serve from "rollup-plugin-serve"
 
 const production = !process.env.ROLLUP_WATCH
 
@@ -47,7 +48,14 @@ export default {
 
     // If we're building for production (npm run build
     // instead of npm run dev), minify
-    production && terser()
+    production && terser(),
+    !production &&
+      serve({
+        contentBase: "public",
+        host: "0.0.0.0",
+        port: 5000,
+        historyApiFallback: false
+      })
   ],
   watch: {
     clearScreen: false
