@@ -74,18 +74,18 @@
   <div class="hero-heading">Power distribution</div>
 
   <div class="flex flex-col max-w-xl mx-auto">
-    {#if isVisible && chart.groups.length > 0}
-      <div class="bar-names my-4">
-        {#each Object.values(chart.colors) as color}
-          <div class="flex items-center">
-            <span
-              class="block h-3 w-6 rounded mr-2"
-              style="background-color: {color.color}" />
-            {color.name}
-          </div>
-        {/each}
-      </div>
-      <div class="chart flex w-full justify-between my-6 max-w-xl md:max-w-2xl">
+    <div class="bar-names mt-4">
+      {#each Object.values(chart.colors) as color}
+        <div class="flex items-center">
+          <span
+            class="block h-3 w-6 rounded mr-2"
+            style="background-color: {color.color}" />
+          {color.name}
+        </div>
+      {/each}
+    </div>
+    <div class="chart flex w-full justify-between my-6 max-w-xl md:max-w-2xl">
+      {#if isVisible}
         {#each chart.groups as group, index (index)}
           <div
             class="flex flex-col items-center"
@@ -103,7 +103,8 @@
             </div>
           </div>
         {/each}
-      </div>
-    {/if}
+      {/if}
+
+    </div>
   </div>
 </div>

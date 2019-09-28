@@ -32,16 +32,6 @@ body {
   background-image: url("mobile-bg_50.jpg");
 }
 
-.battle-bg {
-  background-image: url("http://getyourcomicon.co.uk/wp-content/uploads/2014/07/tumblr_inline_mqy6l7hGS71qz4rgp.jpg");
-}
-
-@screen lg {
-  .battle-bg {
-    background-image: url("https://okarbank.files.wordpress.com/2010/10/superman-vs-zod.jpg");
-  }
-}
-
 @screen md {
   .search-bg {
     background-image: url("https://i.ibb.co/r5MHV17/mobile-bg.jpg");
