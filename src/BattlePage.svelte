@@ -11,13 +11,28 @@
   import { fetchByIds } from "./ApiService.ts";
   import { buildObserverThresholdList } from "./Utils.ts";
   import { battleStore } from "./BattleStore.ts";
-  import SuperHeroBattle from "./SuperHeroBattle.svelte";
+  import { fight } from "./Battle.ts";
   import StatsComparison from "./StatsComparison.svelte";
 
   $: ids =
     request.query && request.query.ids ? request.query.ids.split(",") : [];
 
   let isLoading;
+  let winner = null;
+  $: if ($battleStore.participants.length > 0) {
+    winner = getWinner();
+  } else {
+    winner = null;
+  }
+
+  const getWinner = () => {
+    const result = fight($battleStore.participants);
+    const firstPlace = result.rankedScores[0];
+
+    return $battleStore.participants.find(hero => hero.id === firstPlace.id);
+  };
+
+  const isWinner = hero => (winner ? winner.id === hero.id : false);
 
   onMount(async () => {
     if (battleStore.hasParticipants(ids, $battleStore)) return;
@@ -66,31 +81,35 @@
     {#if isLoading}
       <div class="hero-heading">...Loading</div>
     {:else}
-      <div class="flex flex-wrap justify-center heroes-container">
+      {#if winner}
+        <div class="hero-heading">{winner.name} wins</div>
+      {/if}
+      <div class="flex flex-wrap items-center justify-center heroes-container">
         {#each $battleStore.participants as hero (hero.id)}
           <div
             class="px-4 py-2 flex flex-col items-center"
             in:fade
             animate:flip>
             <img
-              class="border rounded-full h-32 w-32 object-cover mb-3"
+              class={'border rounded-full h-32 w-32 object-cover mb-3 ' + (isWinner(hero) ? 'h-48 w-48' : '')}
               src={hero.image.url}
               alt={hero.name} />
-            <h4 class="font-heading text-2xl font-semibold">{hero.name}</h4>
+            <h4 class="font-heading text-2xl font-semibold">
+              {hero.name} {isWinner(hero) ? ' (winner)' : ''}
+            </h4>
             <button on:click={() => battleStore.removeParticipant(hero.id)}>
               Remove
             </button>
-
           </div>
         {/each}
       </div>
+
       {#if $battleStore.participants.length > 0}
         <StatsComparison
           class="comparison-chart"
           isVisible={isVisibleComparisonChart}
           heroes={$battleStore.participants} />
       {/if}
-      <SuperHeroBattle participants={$battleStore.participants} />
     {/if}
   </main>
 </div>

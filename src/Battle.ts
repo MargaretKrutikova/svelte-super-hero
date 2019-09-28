@@ -55,9 +55,7 @@ export const fight = (heroes: SuperHero[]): BattleResult => {
 
   const rankedScores = seed.scores
     .slice()
-    .sort((left, right) =>
-      left.score === right.score ? 0 : left.score > left.score ? 1 : -1
-    )
+    .sort((left, right) => right.score - left.score)
 
   return { insufficientDataIds: result.insufficientDataIds, rankedScores }
 }
