@@ -13,7 +13,12 @@
   import { battleStore } from "./BattleStore.ts";
   import { fight } from "./Battle.ts";
   import StatsComparison from "./StatsComparison.svelte";
-  import { handleInternalLinkClick, Route } from "./Routing.ts";
+  import {
+    handleInternalLinkClick,
+    navigateToRoute,
+    createBattleRoute,
+    Route
+  } from "./Routing.ts";
 
   $: ids =
     request.query && request.query.ids ? request.query.ids.split(",") : [];
@@ -110,7 +115,12 @@
             <h4 class="font-heading text-2xl font-semibold">
               {hero.name} {isWinner(hero) ? ' (winner)' : ''}
             </h4>
-            <button on:click={() => battleStore.removeParticipant(hero.id)}>
+            <button
+              on:click={() => {
+                battleStore.removeParticipant(hero.id);
+                const battleRoute = createBattleRoute($battleStore.participants.map(p => p.id));
+                navigateToRoute(nav, battleRoute);
+              }}>
               Remove
             </button>
           </div>
