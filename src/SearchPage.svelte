@@ -27,11 +27,17 @@
 
 <div class="flex flex-col antialiased text-gray-900">
   <SearchHeader on:search={handleSearch} />
-  <a
-    href={battleRoute}
-    on:click={event => handleInternalLinkClick(nav, battleRoute, event)}>
-    Go to battle
-  </a>
+  {#if $battleStore.participants.length > 1}
+    <div class="flex items-center justify-center my-3">
+      <a
+        href={battleRoute}
+        class="text-deep-blue-500 hover:text-deep-blue-800 text-3xl font-heading
+        font-semibold"
+        on:click={event => handleInternalLinkClick(nav, battleRoute, event)}>
+        Go to battle
+      </a>
+    </div>
+  {/if}
   <main class="grid grid-template-main">
     <div class="flex flex-col w-full grid-column-main py-5 md:py-10">
       {#await searchResultPromise}

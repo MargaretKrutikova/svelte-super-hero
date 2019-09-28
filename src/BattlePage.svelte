@@ -13,6 +13,7 @@
   import { battleStore } from "./BattleStore.ts";
   import { fight } from "./Battle.ts";
   import StatsComparison from "./StatsComparison.svelte";
+  import { handleInternalLinkClick, Route } from "./Routing.ts";
 
   $: ids =
     request.query && request.query.ids ? request.query.ids.split(",") : [];
@@ -72,8 +73,22 @@
   <header
     class="flex items-center h-12 md:h-16 justify-center bg-deep-blue-100
     border-deep-blue-400 border-b">
-    <div class="uppercase font-bold font-heading text-2xl text-deep-blue-900">
-      Superhero battle
+    <div class="container flex relative items-center">
+
+      <div
+        class="uppercase absolute font-bold font-heading text-2xl
+        text-deep-blue-900"
+        style="left: 50%; transform: translate(-50%, 0);">
+        Superhero battle
+      </div>
+      <a
+        class="text-deep-blue-500 hover:text-deep-blue-800 text-xl font-heading
+        font-semibold"
+        href={Route.Search}
+        on:click={event => handleInternalLinkClick(nav, Route.Search, event)}>
+        Search
+      </a>
+
     </div>
 
   </header>
@@ -104,7 +119,7 @@
         {/each}
       </div>
 
-      {#if $battleStore.participants.length > 0}
+      {#if $battleStore.participants.length > 0 && $battleStore.participants.length < 5}
         <StatsComparison
           class="comparison-chart"
           isVisible={isVisibleComparisonChart}
